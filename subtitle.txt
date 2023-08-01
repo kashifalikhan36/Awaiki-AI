@@ -1,0 +1,509 @@
+hey everyone in today's video we are
+going to create a data analysis
+portfolio project in python we'll be
+creating a real world video data set
+using youtube api and analyze the
+channel statistics of any channels on
+youtube at the end of the video you have
+built a unique portfolio project and be
+able to push this project to your
+current github portfolio i'm super
+excited so let's get started firstly
+let's create a new project folder i'll
+just do it in my terminal let's call it
+youtube api folder now we can go into
+this photo and you could also choose to
+create a python virtual environment for
+this project which is a very very good
+practice and i would really encourage
+you to do that but this project is quite
+simple so i'll skip that this time let's
+also initialize a git ripple for version
+control by running git init so that we
+can create some checkpoints during the
+project later on and avoid the situation
+where we make some terrible mistakes and
+we want to go back to the previous
+version
+next we will launch jupiter lab and
+create a new notebook for our project if
+you're wondering why i'm using jupiter
+lab instead of jupyter notebooks please
+check out this previous video here now
+let's take a look at the youtube api
+documentation and read the instructions
+on how to request data so here it is and
+here are the steps that we need to take
+in order to use the youtube api since
+i've already done this i'll show you
+exactly how to do it let's click on the
+google developers console link if you
+have a gmail account you should have
+access to this website i'm already
+logged in so this is my gmail account
+then create a new project by clicking on
+this button over here you might see a
+different button if you don't have any
+project yet i already have some projects
+but let's just create a new project just
+to show you how it works now let's
+create a new project
+and let's choose a project name just
+let's say new project
+then click on create
+next we need to request an api key by
+clicking on the credentials section over
+here
+then create credentials
+now we have the api key and we just need
+to copy this api key into our notebook
+let's quickly do that
+as you can see an api key is just a
+simple encrypted string that identifies
+an application so it's used to associate
+api requests with an application for
+billing and quote etc so if you scroll
+down over here in the documentation
+you see that the quota limit for youtube
+api is 10 000 units and how many units
+you use depends on what kind of
+operations you're requesting so the read
+operation which is what we'll be using
+is actually very cheap it's only one
+unit per operation
+but the ride search and video upload
+cost a lot more units so this limit is
+to prevent that some applications will
+make too many requests to the api server
+and overwhelm the server and other
+people cannot request any data anymore
+the last step we need to take for the
+api access is to enable youtube api
+service for our project let's go back to
+the dashboard in the google developers
+console
+click on enable apis and service button
+then we can search for the youtube api
+version 3 and here it is click on it
+then enable
+done
+now under the quick starts tab in the
+youtube api documentation page we go to
+bison because we are working with python
+we can see the required packages in
+order to use the youtube api
+we just copied this code into our
+terminal to install these packages
+the package we need to use is the google
+api python client package i'll just copy
+it here because my macbook also has
+python 2 installed so i'll need to use
+beep 3 instead of pip now let's dive
+into the youtube api references to see
+how to use it on the left here is all
+the information that we can
+request with the youtube api for
+retrieving youtube video data we'll look
+at three modules the channels module the
+playlist items module and the videos
+module we all know how youtube works
+right we have the youtube channels then
+we have the upload playlist and then
+under this this upload playlist we have
+all the videos so if we have a channel
+id we can find out what is the uploads
+playlist id of that channel and from
+this upload playlist id we can find out
+all the video ids of this channel and
+from the video ids we can retrieve all
+the information of the videos now let's
+go to channels this module basically
+gives us information of the channel if
+we scroll down here we can see all kinds
+of information that we can get such as
+the channel name description
+upload playlist id view count subscriber
+count etc
+we go to the list method then click on
+the icon or the code icon next to the
+list by channel id over here
+then scroll to the python tab because we
+are using python this is basically what
+we need to do
+i'll just copy this whole thing into our
+notebook to see if we can make it work
+so first of all we don't need this
+client secrets file variable because we
+are not doing user authentication
+but we are using developer key so
+so for this youtube build object here
+we'll replace the credentials with our
+developer key
+okay let's run this
+uh we got an error because uh we haven't
+imported the google api library so let's
+import this module
+and also pandas as well because we're
+going to need it later
+now we can replace this whole thing with
+the build function because we have
+already imported this
+now it actually works now let's replace
+this channel id with a list of the
+channel ideas that we are actually
+interested in i love ali abdallah's
+channel so i want to analyze his channel
+let's go to youtube
+and search for this legendary man
+on the url here you don't see his
+channel id but there's a trick to find
+out the channel id of any channel let's
+click on any of his videos then click on
+the on his profile on that video over
+here so
+you see now that the channel id
+now appears on the url
+let's copy that part of the url into our
+notebook
+we then do a comma join and channel ids
+this is to concatenate all the channel
+ideas together with a comma
+well in this case we only have one
+channel id but later if you want to add
+a lot more channel ids to to get the
+data from those channels all together
+then we'll need to do this method so
+that it also works for multiple channels
+then the response now should include the
+response items for all the channels in
+our list
+let's try that but this looks terrible
+right let's make it prettier by using
+the ipython display module for json now
+if we put it into the json function it
+looks much nicer and easier to
+understand i'll just quickly draw the
+structure of the response here to make
+it easier for you to to follow
+this is really the hardest part of the
+project but we'll get through it please
+bear with me
+now there's a few interesting info we
+might want to extract from this response
+for example the subscribers the views
+total videos and most importantly the
+uploads playlist id our strategy would
+be to look through each item in the
+response extract all the information of
+the channel and then store it in a
+dictionary so if we have 10 channels and
+we'll just end up with 10 dictionaries
+okay then in the end we'll just need to
+append all these dictionaries together
+to make a data frame so let me go ahead
+and do that
+i'll create a function called get
+channel stats for this and i'll speed up
+the video a bit here
+[Music]
+let's try out this function and print
+out the output
+yeah it seems to work and wow alia dao
+has made 426 videos
+well i've only made 25 videos and i'm so
+proud of myself you know the next step
+for us is to use a playlist id to get
+all the videos id from the channel in
+the youtube api references we go to
+playlist items
+this is the method
+we are going to use actually very
+similar to what we have done just before
+for the channel stats we don't need
+statistics because we just need to get
+the video ids
+and the playlist id of ali upda we just
+pasted here then let's copy this piece
+of gold into our
+our notebook and then we just
+try to run the response
+[Music]
+okay that seems to work now we'll just
+create an empty list
+to store all the video ids
+and then we just look through all the
+items and append the video id into this
+list let me just quickly do that
+[Music]
+[Music]
+do
+[Music]
+so this seems to work but the problem is
+that we only get five video ids as you
+can see and we know that ali upda
+actually has 426 videos much more than
+that so from the documentation
+the max results parameter is default to
+five and that's why we only get five
+items or five videos
+now we will change it to the max value
+which is 50. so we'll get 50 videos with
+this request
+but 50 is still not enough we want to
+get over the 400 videos so we have to
+implement something with the next page
+token
+so so long as the next page token is not
+none we will run the request again until
+we reach the last page let me go ahead
+and do that with a ugly while
+loop now let's try out this function to
+see if everything works
+yeah it seems to work because now we
+have 426 videos perfect now it's time to
+extract the video information based on
+the list of video ids let's take a look
+at the documentation again
+go to videos and the list method
+then we'll just copy the code here to
+our notebook let's try this for the
+first five videos and print out the
+response
+this looks pretty good
+there are quite some interesting stuff
+here so i'll make a dictionary of all
+the things i want to extract and then
+create an empty dictionary to store all
+the video info so for each key value
+pair in this start to keep dictionary
+i'll extract the video information from
+the response and then save it to the
+video info
+i've done this before so i know that
+something will go wrong it is because
+some videos will miss certain
+information for example some videos
+don't have any tags probably ali just
+forgot to put the tags in so to prevent
+getting this kind of error we'll
+implement the try accept here so uh
+so if we get an error we'll assign the
+value to none let me finish up this get
+video details function
+[Music]
+now let's try it out
+and
+yeah luckily it works and this is the
+final data set from all our hard work
+i also made a bonus function here for
+you guys that also extracts the comments
+from the videos i find it really funny
+to read through all the comments people
+made and more importantly we can do tons
+of analysis on this huge amount of text
+i'll link the final code to this project
+in the description down below so you can
+check it out and run it yourself now
+that we have an amazing data set to work
+with there are actually a lot of ways to
+analyze it depending on your interests
+what is the average views per video and
+does the number of likes and comments
+really matter for views or does the
+title length also matter for views and
+how long usually are his videos and how
+many tags do his videos have and which
+tags associated with most views for
+example and how often does he upload his
+videos on which days in a week we can
+actually get all this information from
+this data set but before we can do that
+we will need to do some data
+pre-processing and also probably some
+feature engineering to enrich our data
+set firstly let's take a look at the new
+values
+we can see that we don't really have the
+new values for all the columns except
+for the tags column but it's not super
+important so let's ignore it for now
+secondly let's check the data types
+we can see that all columns are in
+object format at the moment which
+doesn't make sense for some columns like
+view counts and like counts so i'll go
+ahead and convert them to numeric or
+integer if you will you can also do a
+for loop here but
+in order to do it faster and in a
+cleaner way i would recommend you to use
+an apply function here
+next let's create a column for which day
+in the week he published his videos
+based on the published ad column that we
+see here i'm super bad with that so i
+just found this gold from somewhere on
+the on the internet so i just chuck it
+in
+next we'll need to convert the duration
+column to numeric at the moment it looks
+pretty weird because it's like a string
+with letters and
+numbers i found on a stack of a flow
+thread that
+talks about how to convert the youtube
+duration to number of
+seconds so i just copied this goat
+here and adapt it a little bit and use
+it
+problem solved then we'll add the number
+of tags for the video because we also
+want to analyze it later as well so from
+the list of tags that we see on each row
+we'll apply a lambda function on it to
+get the length of the list which is
+basically the number of tags
+we got an error here because
+yeah because we we have some empty tags
+in this column so so let's make a little
+if errors like this so that when the
+text is done we'll assign 0 to it
+now let's print out the data set to see
+if everything works
+that looks pretty good right
+now let's move on to the most fun part
+which is date analysis
+first of all let's see what ali's best
+and worst performing videos i'm very
+curious let's import seaborn and
+matplotlib packages
+now we can make a bar chart for the view
+count sorting the videos from the
+highest views to the lowest views
+the x-axis is now overlapping because of
+some long titles so i just rotate the
+x-axis 90 degrees and the y-axis also
+has a weird number format so i'll just
+reformat it as well
+honestly i just googled everything and
+find the solution to these issues i
+don't know it by hard to be honest
+now let's also take a look at the worst
+performing videos on this channel as
+well using the same function but with
+the opposite ordering so from the lowest
+views to the highest views well it seems
+like these videos are all his very old
+vlogs i think before he became popular
+now let's also take a look at the view
+distribution across all the videos on
+his channel you can use histogram and
+different plots for this but i'll be
+using the violin plot
+so indeed some of his videos are really
+outliers here with so many million views
+but most of his videos are actually just
+around 200 000 views violent plot is
+actually very useful if you want to
+compare several channels together next
+we'll plot the number of views against
+number of likes and comments just to see
+if there's any relationship here let's
+do some scatter plots it's always fun
+we can see some positive correlation
+here especially for the number of likes
+it makes sense because the more people
+who watch the videos the more likes the
+video could potentially get and also the
+other way around as well because the
+more likes the video gets the more
+likely the youtube algorithm will
+recommend videos to other people so
+based on this if you want to support
+this channel please hit the like button
+below to help this video reach more
+people now let's also see what's the
+average duration of his video with a
+histogram
+think most of his videos are around 10
+to 15 minutes the longest video is three
+hours or so quite interesting from the
+video titles we can also create a word
+cloud to see which words occur most
+often in his video titles there's a
+python package for this called word
+cloud i'll probably explain some more
+nlp concepts in another video for now
+let's take a look at the word cloud
+well this looks so early about we see
+the most common words here are cambridge
+medical student live vlog and study and
+the last thing that i want to see is
+which days in the week he usually
+uploads his video we can easily make a
+bar chart for this but be aware that
+we'll have to order the weekdays
+manually because python doesn't know
+which days come first that's
+unexpectedly stupid right so just copy
+what i did here and we can see in this
+bar chart that he actually uploads his
+videos mostly three times a week and on
+monday wednesday and sunday now that we
+have done quite some analysis already
+the final touch to our project before we
+share it with other people or uploaded
+to github is to clean up the notebook so
+let's remove everything that is
+redundant and also comment your code
+that is also really important
+it's also a very good practice to move
+all the functions you made to a separate
+python file and then little import this
+python file to our notebook this would
+make our notebook much cleaner and if
+you have time you can also go into reach
+function and write some documentation
+for it just to help other people know
+what the function does and can easily
+reuse your code later on finally the
+last thing we want to do is to push this
+project to our github portfolio let's go
+to the terminal and run git add
+this would add all the files in our
+photo to get and then we can commit this
+change by typing git commit
+and then say something like added files
+or something anything you want
+then we go to the github website to
+create a new remote repo this is how i
+can share this project with other people
+on github
+let's call this repo something like
+youtube api analysis
+then let's copy the url of our repo to
+the clipboard then go back to the
+terminal and do git remote
+add origin
+and copy the url here now we can quickly
+do a check to see if the remote origin
+is indeed there so we run get remote
+v
+yeah this looks good now we can push our
+local git ripple to the remote git repo
+now if we go to git repo on the github
+website we actually see our files are
+added there if you reach the end of this
+video congratulations you've done a
+great job and there are so many
+different things that we can do with
+this data set and we haven't even
+touched the comments set yet so feel
+free to use the code that shared below
+and make it yours and build on it if you
+got any value from this video don't
+forget to hit the like button and
+subscribe to my channel if you haven't
+already i hope you enjoyed this video
+thank you for watching bye
+[Music]

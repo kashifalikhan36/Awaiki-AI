@@ -9,7 +9,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 
 class GoogleSlidesPresentation:
-    def __init__(self, credentials_path=r"C:\Users\porwa\Downloads\client_secret_524550495379-ijrb0lbfal2j8cel6bjii6or8qq3j5ta.apps.googleusercontent.com.json"):
+    def __init__(self, credentials_path=r"C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\client_secret_781583198347-ma1pioj8maf7ql6lsra64a9s94cvujds.apps.googleusercontent.com.json"):
         self.credentials_path = credentials_path
 
     def authenticate(self):

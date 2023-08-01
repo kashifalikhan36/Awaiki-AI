@@ -53,18 +53,15 @@ class YtInfo:
         get_channel_stats()
 
     #Subtitle Scraping From YT Videos
-    def subtitle_info(self,yt_video_link,output_type):
-        output_type=output_type.lower()
+    def subtitle_info(self,yt_video_link):
         def Get_subtitle(video_code):
             subtitle=YouTubeTranscriptApi.get_transcript(video_code)
-            if output_type=='text' or 'txt':
-                self.subtitle_result = TextFormatter().format_transcript(subtitle)
-                with open("C:\\Users\\Kashif\\Documents\\hackathon_proj\\subtite.txt",'w') as file:
-                    file.write(str(self.subtitle_result))
-            elif output_type=='json':
-                self.subtitle_result = JSONFormatter().format_transcript(subtitle)
-                with open("C:\\Users\\Kashif\\Documents\\hackathon_proj\\subtite.json",'w') as file:
-                    file.write(str(self.subtitle_result))
+            print(subtitle)
+            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\subtitle.txt",'w') as file:
+                subtitle_result_text = TextFormatter().format_transcript(subtitle)
+                file.write(str(subtitle_result_text))
+            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\subtitle.json",'w') as file:
+                file.write(str(subtitle))
         try:
             Get_subtitle(yt_video_link[32:43])
         except:
