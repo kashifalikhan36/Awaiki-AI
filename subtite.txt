@@ -1,0 +1,1798 @@
+[Music]
+hey what is up everyone and welcome back
+to another video I'm really excited for
+this video today in it we're gonna solve
+real-world data science problems with
+Python pandas so basically how it's
+gonna go is we're going to take a data
+set do some initial processing and
+cleaning of that data and then once we
+have a little bit more of a polished
+dataset we're going to start exploring
+that data and you know really using
+Python pandas and Python matplotlib to
+extract meaning from that data and
+ultimately with that like kind of
+extracted meaning with that analysis
+we'll be able to answer real world
+business type questions from the data as
+a data scientist or data analyst would
+before I begin I want to say thank you
+for making this happen I started with
+this video as a pull of four options you
+guys apparently like this option it was
+overwhelmingly the highest voted and
+then I asked the question you know what
+should I include in this video you guys
+gave me all sorts of really cool
+responses you give me too many responses
+and I'm not actually gonna be able to
+put everything you guys suggested I do
+into this video but I'm gonna make this
+a series so if you find you liked this
+video make sure you subscribe so you
+don't miss the future series I know some
+of my ideas for the future kind of
+real-world data science problems will be
+sports analytics it's gonna be maybe
+stock trading analysis you know maybe
+some specific type of challenges you
+guys find interesting I think it will be
+I think will be a fun way to do a bunch
+of different videos and a bunch of
+different real-world data analysis stuff
+so hopefully you guys like this video ok
+to get started with this tutorial you'll
+need to download the data so you can do
+that by going to my github page which is
+linked to in the description and the
+data is found in sales analysis sales
+data so that's 12 months worth of sales
+data right there so go back to the home
+directory of the github page and there's
+two options for getting the data so you
+can either if you're familiar with git
+you can either fork this repo then clone
+it locally and instructions are on how
+to do that or within the setup of this
+repo and the other option is to click
+this green button up here and to
+download the zip and then go ahead and
+extract this to wherever you want to
+work on the code so
+place like YouTube code slow status
+audience always like that distract it
+and then I recommend next I personally
+like using Jupiter notebooks to do my
+analysis so I'll open up a Jupiter
+notebook and I do this by going if you
+don't have Jupiter notebook I'll put a
+link to set it up and how you do that in
+the description as well so check that
+out and I like Jupiter notebook because
+you can kind of do your you can write
+your code and really show like a nice
+analysis that you can kind of like give
+to someone else all in the same place
+without any extra effort so that's why I
+like Jupiter notebooks okay so go to
+this and sales analysis and as you can
+see there's already a finished Jupiter
+notebook there that's like the completed
+code we're gonna create a new Jupiter
+notebook to just kind of start from
+scratch and I'll call this just analysis
+throughout this video I'm going to
+present kind of concrete tasks for you
+to try to solve the way you're gonna
+probably at the most out of this video
+is each time I kind of present a new
+task try and solve it on your own and
+then if you can't figure it out go ahead
+and play the video and then I'll walk
+through the solution you don't have to
+do that but I just think it's a good
+recommendation to get some real hands-on
+experience okay to get started let's
+import the necessary libraries we need
+so to start it's just going to be pandas
+and if you don't have pan installed I'll
+put a link into the description to
+install pandas alright so what is our
+first task so the first task is going to
+be to we have in that repo we have all
+that data that I showed you so we have
+the sales data folder and each one of
+those in this there's 12 months worth of
+data so the first task is going to be
+merging 12 months of sales data into a
+single file so go ahead and try this on
+your own and then I'll go through how to
+solve this and we want to do this
+because it's also going to be easier for
+us to do all sorts of a yearly analysis
+when we have everything merged together
+as opposed to 12 separate files
+we're gonna do this task I would say it
+a start simple and to start simple it's
+just trying to read a single month of
+data so if you remember our data it's
+we're currently working on an analysis
+file our data is in sales data and then
+let's say we wanted to get sales April
+2019 dot CSV so we can do that by using
+DF equals PD dot read CSV dot slashes
+our current directory and then it was
+sales data slash sales April 2019 dot
+CSV so this should get us just a single
+month of data we're on that and then if
+you wanted to actually see I ran out
+with Shift + Enter by the way that I did
+it quickly D F dot head will give us the
+first five rows and as you can see look
+at that we got you know a couple
+products ordered the order dates the
+purchase address we have our data cool
+so now how do we take that and actually
+take each month and merge it into one so
+I mean whenever I'm solving something
+like this I'm usually doing a bunch of
+Google searches so I mean Stack Overflow
+is our biggest friend when we're solving
+these data science problems I don't
+remember half the things that I feel
+like I end up using but I'm able to know
+what I'm looking for and search for that
+so you know you'd open up like a Google
+window and type something in like read
+all files from directory Python how do i
+list all files in the directory let's
+see what it says OS start list directory
+will get you everything that's in a
+directory and it gives you an example
+look at that cool so we can use list
+directory I'll import it like this will
+import it up here and I'll rerun this so
+we get all of our imports there and then
+what we're gonna do is for we'll do
+files let's say files equals and we're
+gonna do a list comprehension here we're
+gonna say file for file in OS dot list
+directory and I believe we can pass in a
+path here so we're gonna do sales data
+and hopefully that files will give us
+everything we're looking for so now we
+do for file and files I know that's not
+what I wanted I copy
+I will just say prints file and see what
+happens and I'm gonna get rid of this DF
+the head here look at that you get the
+twelve months worth of data by doing
+file for file in OS thoughtless
+directory so now we just need to take
+these files and concatenate them to make
+a single CSV so how can we go about
+doing that and you know I'm doing the
+same thing here behind the scenes is you
+know I'm saying you know how do you
+concatenate data frames or you know
+maybe you don't know the working
+catenate maybe say like a merge or
+something like you're probably gonna get
+to the same answer in pandas pandas I
+can cut okay this looks helpful so you
+know I might search through a little
+documentation and now we're all totally
+gonna concatenate them into a single CSV
+okay so we're gonna start out and I'm
+gonna just say something like all before
+we go into the for loop we're gonna
+probably define an empty data frame to
+kind of store all of our data you're
+gonna say all months data equals PD data
+frame so this is the when we read the
+CSV we read it in acetate a frame so if
+we wanted to create an empty data frame
+we do something like this
+and now what we're going to do is each
+time we add a new file we're gonna have
+to read the file name and remember we
+start it with this path so we're going
+to ultimately do print or we're going to
+move this read CSV into here we're going
+to do DF equals we could honestly copy
+this whole line
+DF equals PD uh treatise fee and now
+instead of this we're gonna do sales
+data slash plus file because that would
+give us the same thing because each time
+we do this we'll get the appropriate
+file name so that should read all the
+data frames but now we need to append
+those to the all months data so we can
+do that by doing all months and you know
+there might be multiple ways to do that
+this equals PD concat and we're gonna
+concatenate all months data before and
+the result of our current data so DF
+here alright and then when we get to the
+end it should have concatenated each
+month because we iterated over each file
+and we should get we can do all months
+data head and see what we get see if
+anything works I mean it ran so now it's
+a matter of did all months data can we
+save it and does it have everything so
+I'm going to do a to CSV I'm gonna do
+all months data dot to CSV and if you're
+not familiar with some of these commands
+I definitely recommend you check out the
+first video I posted on Python pandas
+I'll pop it up above me it will cover
+all of this stuff so I'm going to do all
+data I'm going to call it all data CSV
+and I'm gonna do index equals false
+because I don't want to save this first
+column values and let's see what happens
+so it ran and now do we have all of our
+data moment of truth okay so I'm going
+to go back one directory all data dot
+CSV okay that looks good so I'm gonna
+open it up real quick whatever
+okay low download alone okay so we have
+April it looks like that's four but now
+if I scroll down do we have the other
+months Mona shoot oh my god load why are
+you so slow
+I see eight yeah I mean we have the
+months here you can scroll through to
+double-check but it looks like we have
+everything here so this is a good
+starting point and I quickly recommend
+to add a column to read in the updated
+data frame so you don't have to run this
+every time that you want that all data
+file so we can do that by just doing all
+data equals pdds field data and all data
+head will show us the first five rows
+and as you see we have everything in
+this all data so that's the updated data
+frame alright so now that we have all
+the data in one place in a single data
+frame let's start doing some analysis so
+the first question I want you guys to
+answer is gonna be this what was the
+best month for sales in all the data and
+you know how much money was earned in
+that month and we're gonna break this
+down a bunch before we do it but feel
+free to try to solve this full question
+on your own but I'm gonna like make this
+break this up into a couple smaller
+tasks so let's insert some more cells
+basically what I'm going to recommend is
+before we do the best month for sales
+let's Aude meant the let's vent the data
+with some additional columns because
+that will ultimately be helpful in our
+analysis so the first thing is right
+here we have an order date but we don't
+easily have the month so I think that we
+want to add a specific column for the
+month so I'm going to just call this
+little section that we're adding augment
+data with additional columns and we're
+gonna add a couple more so inserts oh
+hello I would just add a couple cells
+because I want a little extra space to
+work with okay so we want argument the
+data with some additional columns that's
+one thing we want to do so the first
+column that we want to add and
+just kind of nicely glaive all this is a
+month or so I guess this is kind of like
+tasks to add month column okay adding
+the month column so with this and kind
+of anything in Python pandas and Python
+in general there's multiple ways to go
+about how we would add a month column
+it's kind of a balance of what's easiest
+versus what's like easiest to read
+versus you know what's most scalable etc
+so looking over here we don't have the
+month currently but we have dates for
+each of our products that were sold so
+immediately what comes to my mind as the
+easiest easiest solution to add a month
+column would be to just take the first
+two string or first two characters in
+the date string and make that the month
+column so that's what we'll start out
+I'm doing so okay how do we do that and
+you know if you at least have an
+approach and like know what you're
+trying to do usually you can use Google
+to your advantage and just like search
+how to do the specifics of that approach
+so to add the new column we can do all
+data month just say something like three
+to start right if we wanted to just to
+show that we can easily add a new column
+like that
+as you see month
+everything's three right now so that's
+like okay just adding a number but we
+want to add the proper date reading from
+the order date column so to do that we
+can do all data and then we're going to
+grab the order date and then when we
+want to convert this into a string we
+can or like at the string properties of
+this cell and these this whole column
+where you can do dot string and then we
+can access it just like we can access a
+normal I guess Python string so I can do
+zero to two and that will grab the first
+two characters and honestly I think that
+should be good so let's see what looks
+like and
+all the data head look at that so it
+looks like we got fourth month
+everywhere the one thing that I have an
+issue with right now is it's definitely
+a string here and I think that a month
+should probably be a numerical value so
+to do that we can kind of pretty
+straightforward do some conversions so
+I'm going to go ahead and use the as
+type method in pandas so that looks like
+so I'm taking that same column we have
+and I'm basically just performing a
+manipulation on what we just saved so
+the zero for that we have and I'm gonna
+do all data a month dot as type and it
+doesn't really matter what type of
+integer we use because months are only 1
+through 12 but I'm going to just say in
+32 and so that should now convert it to
+numerical values let's see if it works
+nope it does not work and why does it
+not work all right let's see cannot
+convert float n a n to integer funfun so
+it looks like we have some NA ends in
+our data and we're gonna have to clean
+that up so the next before we finish
+this task 2 let's start cleaning our
+data ok so let's just create a new
+section in our little jupiter notebook
+here we added a couple more cells i
+don't know how many cells we'll need but
+i'm gonna make the first thing here the
+main point to clean up the data ok so
+the first thing we wanted to clean was
+that we ultimately had rows that there
+was any end value somewhere and let's
+see if we can figure out where that is
+so we don't see anything here but what
+we could do is maybe display some more
+data
+maybe that's display like 50 spots and
+let's see if we see anything there I
+still don't see it any na n maybe we go
+to 100 okay it's not going to show this
+what we could do is
+okay so we can't see it by doing this
+and you know sometimes you only have
+like one or two and not a numbers in the
+tens of thousands of rows so like even
+though you can't immediately see it like
+what you could maybe do is like in Excel
+or something sort the data and see it
+but we also use pandas to figure out
+exactly how many na ends we have and
+what they kind of look like as far as
+rows go so to do that let's I'm in a
+real quick just write up a markdown sale
+we want to drop rows of n a n so to do
+that let's first figure out if you know
+we have where our na ends are so I'm
+going to just call something na n data
+frame and we're just going to use this
+to kind of filter and get all the na end
+rows that we have and we don't know
+exactly where I don't know if I ever
+message so that's where it was I guess
+it's probably because we're trying to
+convert this month to int it's going to
+be in the month column but maybe it's
+other places too so how do we get the
+not a numbers we can do a handy-dandy
+Google search and let's see let's say
+find rose with a na and pandas how does
+like rose with one of our nulls from a
+panda's data frame okay Stack Overflow
+will immediately if I tell us see that's
+it see is dull or maybe I'm gonna say
+instead of select rose with it looks
+like already clicked on this one display
+rose with one or more any n values and a
+panda's data frame you can use pan data
+frame about any with parameter axis
+equals one this looks probably good to
+me let's try this okay so this is the
+command I said we wanted to call it na
+NDF so I'm gonna just delete this
+literal part and our data frame is not
+called data frame it's called or DF it's
+called all data so we can do replace
+this with all data and hopefully this
+Stack Overflow post helps us and if we
+do n a n D F we can dot head we can see
+what our NA ends look like and look at
+that they are a full row of any ends so
+basically it's not like we're just
+needing to refill a single order date
+value like we're missing it we have rows
+that are completely blank so let's just
+try to go ahead and drop all of these
+rows to do that we can use a command
+called drop na and just like I kind of
+found this command you can also do a
+Google search and figure out how to drop
+the NA ends so let's see we have all
+data we're gonna say or that's just yeah
+all data equals all data and we can do
+drop na a that's going to be the command
+and if you look up the documentation for
+drop in a there's two valley or there's
+a premier called howl and you can either
+do any which would drop a row if it just
+had a single na n but maybe it had all
+these as normal values that were filled
+in but in our case we found a bunch of
+these rows with all values that are any
+ends so instead of doing drop in a any
+we're going to do all and let's see what
+happens now if we set all data to this
+value and I'm going to just holiday did
+head just see if okay it looks good but
+our real test will be if we run this and
+try to convert the month comb to
+integers will it give us that same
+cannot convert float any end to integer
+error and this is the moment of truth
+yeah we still get an error please not be
+the same error 'invalid oh look at that
+different error 'invalid literal four
+inch with base 10 or so now we need to
+figure out what we need to clean up to
+fix this issue okay so we have this
+issue and so let's try to figure out
+what is causing this or to pop up when
+we're trying to convert to an inch so
+let's do that in our cleaning section so
+first let's think about what would be
+causing that so we had or but it's kind
+of unclear why that would happen but
+ultimately what I'm thinking is that you
+know we take the first two characters
+and we paste them over here so my like
+gut feeling would be okay some reason oh
+are the letters O R is in the first two
+values here so let's try to figure out
+where that happens okay to do that we
+can also use that that same function
+that we use to grab the first two string
+values we can do something similar to
+filter this all data so I'm just gonna
+say temp DF for now equals all data and
+then we're gonna filter this so you
+could either do it like this or I think
+also location would work here but we're
+basically trying to index all data based
+on a certain condition so we're passing
+in a condition here and the condition we
+want is that the first two characters of
+this order date equals o R because
+that's what's causing our issue and
+that's what we want to clean up so to do
+that we're going to do something like
+this order a date string zero to two
+just like we did when we are getting the
+month and then we want it to be equal to
+or I just want to see where it's
+happening and then we can
+delete it okay look at this so we see
+our issue for whatever reason that
+columns here we're getting duplicated
+throughout our data frame so ultimately
+if we can just drop all these types of
+rows hopefully we have no errors after
+that so we filter it all data by the
+values that equals or well to get the
+values that are not equal to or we can
+just change this equals equals to a not
+equal and instead of making this
+template data we'll just reset it to be
+all data so now if we do this we'll get
+a new all data and if we're lucky this
+new all data that has now dropped the n
+A's and we've got rid of the duplicated
+column headers that were scattered
+throughout the data frame hopefully now
+we can add our month column and convert
+it to an int with no issues nice we did
+it but okay so now that we've added the
+month column let's revisit the question
+that we were trying to answer what was
+the best month for sales and how much
+was earned that month so it you know
+we've now gotten something that will
+allow us to easily filter by month but
+the biggest other question that I see in
+this question we're trying to answer is
+sales and while we have like the
+quantity ordered and the price of each
+ultimately to get the sales values we'll
+want to like multiply this by the price
+of each and get like kind of like a per
+order sales value so let's add another
+column so I'll kind of make this task 3
+add a sales column so this will
+ultimately help us get to really
+actually answering this question one so
+add a sales column well how do we do
+that this is a fairly it should be
+fairly straightforward as you I said you
+know quantity ordered time price each
+will give us our sales so we just do all
+data sales we can say that that equals
+all data
+quantity ordered and we can do it
+there's nice syntax here where we can
+just do a multiplication symbol and then
+do all data price each and if we then
+print out what our data frame looks like
+what BEC okay can't multiply sequence by
+nan int of type string so it looks like
+we actually have a little bit more
+cleaning to do it just appears that you
+know the reason we're probably having
+strings is that even though these look
+like numbers they're actually encoded as
+strings
+so as a additional thing let's let's
+convert columns to the correct type so
+we'll start with the two that we were
+just trying to deal with so we want to
+make all data quantity ordered we want
+to make that a type of int so make int
+and then we want to do the price of each
+as we see here we want to make that a
+float so price each we want to make this
+a make float okay
+so before when we made an integer value
+where did I do that we did yeah I forget
+where I put it
+we did as type there's actually another
+way we can go about making numerical
+values in pandas and it's called PD dot
+two numeric and it handles a little bit
+more because you don't have to like
+fine-grained say you want to in 32 will
+kind of just figure out what the correct
+type is that you should convert it to so
+we're going to use that here to convert
+our columns to the correct type so we're
+gonna just do PD to numeric and really
+I'm gonna keep reiterating this but when
+you're doing this analysis as long as
+you have like a idea in mind of what you
+want to do the data select here we
+want to convert it to in numeral type if
+you use Google to just try to figure out
+the exact way to do that you're usually
+going to have luck so it's really just a
+matter of being able to have the logical
+thinking to like know what you want to
+do to the data because finding the
+syntax is usually pretty accessible via
+the great old internet so pd-2 numeric
+and then we'll pass into that all data
+quantity ordered I think this should be
+the syntax we want and we'll do the same
+thing to the price each year okay let's
+run that and see what happens
+well we've got no errors let's just
+print out our head okay
+looks the same as it did before
+ultimately I think we'll really know if
+we can run that sales column and not get
+any issue so let's see if we add a sales
+column by doing this look at that
+23 90 is 2 times 11 95 so it looks like
+we got what you want if you wanted to
+you could reorder this column over here
+by the quantity ordered and price each
+I'm not going to go through how doing
+that how to do that here but I did cover
+that in my previous pandas video so you
+can check that out if you're really
+curious ultimately like doesn't really
+matter where our columns are positioned
+when we're performing the analysis so
+I'm fine just leaving it over here on
+the right side all right now that we've
+successfully you know added our month
+calm out of our sales column let's
+finally answer this question west what
+was the best month for sales and how
+much was earned that month well we can
+do this pretty easily with a group by
+function so we'll take all data we will
+take group by well we want to figure out
+what's the best a month so we can just
+group by the month column and then what
+we want to do is sum up the values so
+we're grouping by month and then summing
+so let's see what happens if we do that
+did it uh well we get 12 months and we
+get the sales values over here and if we
+just wanted to look at the sales values
+we could type in sales up here and as
+you can see I don't actually like that
+as much let's go back now we can answer
+our question and so what was the best
+month for sales well as you can see here
+December was the best month for sales
+with approximately four million six
+hundred and ten or six hundred and
+thirteen thousand dollars in sales that
+month and then worst month was January
+with 1.8 million dollars in sales and if
+we wanted to we could also plot this
+because I think plotting often times is
+a good way to visualize these results
+and kind of see the trends month a month
+and maybe do some further analysis on
+maybe why is certain months higher than
+others and it's easier to see that then
+in this chart so we could do import
+matplotlib but pipe lot as PLT and i
+might go a little bit quickly through
+this graph but if you want to know more
+about matplotlib feel free to check out
+the two videos I've posted on the
+library they should probably walk you
+through everything but we want to do a
+bar chart I think that will be good for
+this data as our x value we want all the
+months so I could get the months play in
+a couple ways but I'm going to just do
+months equals range 1 to 13 this 13 is
+exclusive so this will actually get me 1
+to 12 that's what we want so I'll pass
+in months as my x value in our Y value
+well that's going to be this some value
+so maybe we just say results equals all
+data grouped by some run that and then
+we're going to pass in results as our Y
+value and we don't want all results we
+want just the sales column as our Y so
+I'm going to do results sales because
+we've saved it as that data frame you
+saw before and let's see what happens
+we have to do plot touch show look at
+that we got all of our months in the
+number of sales well we might want to
+make this chart a little bit nicer so we
+could do a bunch of different things we
+could do first plot X ticks I want to
+see every month here I think it'll just
+be easier to visualize I'm going to do
+plot at X 6 equals months I'm going to
+do plot I'm going to add a y label and
+an X label so Y label is these values
+over here so that is the sales in u.s.
+dollars and our X label is the month
+label or the month value so I could just
+say something like month number and if
+you really wanted to get fancy
+there's the date/time library in Python
+that you could actually convert these
+month numbers to their actual name month
+but I don't think it's necessary for me
+to show that right now but look at that
+so we got our month number we got our
+sales and US dollars we got these labels
+and you can see the relative thing so
+worst in January goes up the dips then
+goes up and as a data scientist with
+like these results I'll try to like
+figure out you know why we're certain
+months better than others like you know
+when in the fourth month in April did we
+maybe spend more money on advertising I
+try to look for the correlations that
+you know probably led to these better
+results so like in the month of December
+if I'm thinking about it like why would
+we do so much better in December but if
+you kind of think about the u.s.
+holidays
+I mean nationally I mean they're
+international holidays but like the big
+thing in December is Christmas all in
+you know all the holidays people are
+buying a lot of gifts for each other so
+it makes sense that December has the
+most number of sales that that's like
+very you know that definitely like
+checks out to me and maybe everyone's
+done spending money by January so this
+is the types of things were kind of like
+figuring out from our day
+okay so now that we've answered question
+one let's ask another question and I'm
+gonna just make a bunch of cells so we
+can kind of start fresh and I'm doing
+shift-enter every time that I make a new
+cell you can also do ctrl enter and that
+keeps you it runs the code and keeps you
+in the same cell nice things to know but
+okay so what is our question to gonna be
+and I'm going to say question to is
+going to be you know what city what US
+city had the highest number of sales so
+this is very similar to the first
+question so maybe you can try to answer
+this one on your own and as a hint
+you're gonna have to augment your I
+would recommend at least to augment your
+data with a city column so you have to
+figure out how to do that but what city
+had the highest number of sales that is
+the question that I'm going into it
+asked now okay so yeah the first step in
+solving this is to augment the data so
+we're gonna go back to our augment data
+stuff I'm kind of running forgetting
+these test numbers but okay I'll say
+that this is task four task four add a
+city column okay and we need to enter
+one more so below
+okay so add a city column so how could
+we do this well where do we get our city
+from well if we look at our data we do
+have a purchase address and nested right
+in the middle unclear how to get that
+exactly is our city name so if we want
+to sum up by city we're going to have to
+somehow extract this value so how we're
+gonna do that my solution to grabbing
+the city column is to do one of the like
+one of the most useful I would say
+functions and pandas and that is the
+apply method so let's use the dot apply
+method and basically what this dot apply
+method does is it allows us to run any
+function
+Dayna frame and I'll show you what I
+mean in a second but okay so whenever
+we're making a new column we can usually
+start out by like doing all data or
+whatever our data frame is called and
+then just create the new column name and
+say that equals what does it equal well
+it's gonna be somewhat related to
+purchase address so if we go ahead and
+do all data purchase address that's a
+good start
+okay so what do we need to get from the
+purchase dress let's look at how these
+are structured and try to be very
+programmatic about it okay so we have
+you know this dress one thing that I
+immediately see is that Dallas is
+between two commas so what we could do
+is split on the commas and then we're
+gonna get Dallas a lot easier so we want
+to split each of these strings so
+basically perform a function we want to
+like write a function let's say and have
+it split and get Dallas which is right
+in the middle so to write this like
+method that I just kind of described
+we'll use the apply method and basically
+this allows us to like apply kind of an
+arbitrary function on an entire column
+or on you know several columns within a
+data frame so apply I'm going to do
+lambda X and I'm going to say just to
+start I'm going to do X dot split by
+comma and grab the I guess if we split
+it on commas we want not the 0th index
+but we want the first index because
+that's how he countin Python so I want
+to just show you what happens when I do
+this
+I actually just will do a head okay look
+at that we already have our cities right
+here and what is that this is doing is
+saying for every like X value so when we
+do apply we can use this lambda X and
+basically the x value here is the cell
+content so we're saying for each of
+these cell contents we want to split it
+by commas and then grab the first index
+in one thing that's really nice is that
+we could define a function like get city
+that would take in some sort of address
+value and we could return basically what
+we just did with this lambda function we
+could do address dot split dot comma or
+like with the comma and then got the
+first index of that and that's what we
+just did here but I could then replace
+this with get city X and now we can
+define any functions we want with this
+apply method and ultimately run it
+within our data frame on a column so we
+can do all sorts of really crazy like we
+could get super super crazy with this
+function and do whatever we wanted in it
+and use apply to basically incorporate
+that into our data frame and I think the
+one caveat
+you know critics might have over this
+apply method is it's not going to be the
+most efficient you know you might
+because this is a custom function it
+can't be super super highly performant
+but honestly like for most cases as long
+as you're not dealing with you know
+hundreds and thousands of like terabytes
+of data like for most you know everyday
+data science reason like use cases I
+have no issue using this apply method
+and with speed or anything so I'm gonna
+run this again and to show you that it
+still works properly and just a real
+quick clarify the reason we do lambda X
+is basically whenever we do lambda X
+this allows us to grab
+the cell contents we could apply other
+functions in here that don't depend on
+the cell contents without using a lambda
+function but whatever we need to
+actually do something on a cells content
+will use this lambda X a notation and
+real quick I just noticed that I named
+this column instead of city so I can
+change this to C and oh no now I have
+column and city we can drop that column
+named column by doing all data drop
+columns equal and then the one we want
+to delete so that's just column and now
+if we do it and then we also this would
+do it in a separate spot so if we want
+to set it to back to all data we can do
+it like this or you can also pass in the
+so I run that it works I also could have
+passed a keyword in place and so that's
+true and that would have done it without
+setting it there but okay now we have
+just our city that we wanted moving
+forward I have a question for you and I
+think this is a pretty tricky question
+so I don't really expect you to get it
+but if you can get it without me giving
+you further hints like huge huge gold
+star you guys get but is there an issue
+with just listing the city here so we
+want to aggregate all the city totals
+and sales and I'm asking the question
+you know do we have any issues by just
+doing it how he did it so you know we
+have these addresses and I'm wondering
+do we need to include anything else or
+are we good like well we have run into
+any issues down the road so try to think
+about that for a sec and to answer the
+question yes we will run into an issue
+if you think about you know us cities or
+cities around the world there's a lot of
+duplicates so you know I'm here in New
+England and you know when people say
+Portland I'm thinking they're talking
+about Portland Maine but when you talk
+to someone on the west coast of the
+United States and you say Portland they
+are most certainly not thinking of
+Portland Maine they're thinking of
+Portland or
+again so in our data set we actually had
+the overlap in cities with those those
+two cities I just mentioned the two
+Portland's so we should also grab the
+state so we can write another function
+that takes in an address and from our
+address here it's gonna grab this state
+value so that's not gonna be too too
+crazy we can do the same start values we
+can do address not split
+we can split it on commas and now
+instead of the first index we're gonna
+grab the second index because that
+contains the Texas stuff so two second
+index and we'll just for now we will
+have this leftover zip code but we'll
+just include that in our answer for now
+so if I wanted to show you that I could
+do like gets in e plus empty string plus
+get State address and we should have
+something a little bit more complex in
+that city column know what happened oh
+it should be addressed it should be X
+here and as you see now it has like the
+state plus the zip code okay so how do
+we get rid of the zip code now well we
+can do another split and this time on
+white space because there's white space
+between Texas and seven five zero zero
+one and then we can get the of the white
+space here so we're looking at the white
+space here there's white space before
+Texas and white space after Texas so
+again this we will want to get the we'll
+want to get the first index here and
+I'll run
+look at that Dallas Texas like that
+that's cool and real quick to see like
+what would happen is that basically
+because there's white space on the left
+side of the the state abbreviation there
+when you split on the white space you'd
+ultimately on the left side of this have
+an empty an empty string and that's
+what's happening if we grabbed the
+second index here and or the 0th index
+instead of the first cool so yeah Dallas
+Texas and if you wanted to format that a
+little bit different a couple ways you
+can do it so you can maybe do plot a
+space parenthesis and then plus
+parenthesis like that and then that's
+maybe a little bit nicer of a syntax
+another cool thing you could do this is
+I'm getting jumping around all sorts of
+topics but there's a concept in Python
+called F strings so basically I can also
+do an F string of this whole entire
+thing and basically whenever I have a
+variable I surround it with brackets and
+then I only have to do the pluses
+anymore the pluses are now just part of
+the string so I could do parentheses and
+then another bracket because we have
+another variable here with the get state
+we're executing code so whenever we
+execute code we use brackets in the up
+string and then we get rid of the plus
+quotation quotation here and we've just
+reformatted this in a they scroll down
+so you can see it this in a different
+fashion so if I run this again we should
+get the same exact thing look at that
+and F strings are I think a addition and
+like Python 3.5 and higher so as long as
+you're using that you're good here cool
+we have a city so let's do the
+aggregating on the city now okay so now
+that we have our city column we can
+actually go ahead and scroll down here
+and answer the question what city have
+the highest number of sales well if we
+look at how we did the highest number of
+you know what did the best in a month we
+can just kind of copy the syntax so I'm
+going to say results equal
+group by instead of grouped by month
+we're gonna do by city and some that so
+let's see what we get for results so you
+can either print results display results
+or just leave it as the last thing
+executed in your data frame okay so we
+have cities and as you see there's the
+the Portland Maine the Portland Oregon I
+was talking about and what was the sales
+here so this is kind of annoying to like
+view it nicely so if you scroll through
+this you can see that San Francisco
+appears to be the best but I think we
+should plot this again copy basically
+the exact same code from what we just
+did so just copy and paste in from above
+so now we're not using months as our
+parameter we're using the cities and our
+results sales where you want that the
+same so that's fine what else do we want
+why label that's good x tix okay so we
+really just need to share energy our X
+values so what are our X values well
+they are going to be the unique value so
+there's a yeah this unique command I
+believe that will get us the unique
+column values for a specific or the
+unique values in a specific column so if
+I did all data
+city unique dot unique that should get
+us and I made the cities that should get
+us all the different cities that we have
+so all of this what you see here so I
+can pass this in and make this the X
+ticks as well and let's see what happens
+cool looks like we have a plot ah it's
+really ugly what else can you do well
+for X ticks instead of having it listed
+out horizontally because that's what's
+causing the collisions and I guess this
+is not month number anymore this is city
+name so US city name
+but what we can do with the X ticks is
+we can pass in a rotation equals
+vertical and maybe we make the font a
+little bit smaller so I'll see the font
+size equals 8 and look at that we got
+all our cities but I see an issue what
+do we do wrong well when we did the sum
+here we found that San Francisco was the
+best number of sales however when we
+look at this chart we just made Austin
+is the best sales so what is happening
+and you know I was kind of running
+through this code before I did some of
+this tutorial and I ran into this I was
+like what the heck like why why did you
+break on me like why are you showing
+inconsistencies well the issue is that
+when we're showing the the Y data the
+order matters but when we do this
+all data city unique it orders it in a
+different way so our X data and our Y
+data are not in the same order so we
+ultimately need to make this stuff being
+the same the cities being the same order
+as this sales results so to do that we
+can do a list comprehension this is
+something that I found on Stack Overflow
+but basically what I found was you could
+do City for City data frame basically
+you need two different parameters here
+and I realized this just by looking at
+the stack overflow post but all data
+group by city actually I don't think I
+need the brackets city and this will now
+get me the cities in the same order that
+they were in when we did the group by
+some so this set should hopefully work
+look at that yay
+by switching out how we organized our
+keys our X values here in the bar chart
+we got the right looking chart so we see
+that San Francisco is the highest
+selling you know the best performing
+city of Keith's SuperDuper cool
+electronics and you know as
+data scientists again I might ask myself
+some questions you know why is San
+Francisco so much higher than the other
+places other places well this is an
+electronics store maybe it's because
+Silicon Valley needs more electronics so
+you know that would be one reason you
+know maybe the tech to advertise is like
+better in San Francisco or more people
+have more money in San Francisco you
+know I could start kind of creating some
+hypotheses on the data on why that value
+is what it is and same thing for like
+the lowest value is like you know why's
+Portland Maine the smallest well out of
+all these cities I see here it's by the
+smallest city maybe advertising is bad
+there you know you can use this chart to
+help you really like understand your
+data and like give key insights to the
+business people that are gonna hopefully
+improve the sales moving forward all
+right the next question we're going to
+answer is going to be pretty business E
+and that question is what time should we
+display advertisements to maximize the
+likelihood of the customer buying the
+product and so if we remember our what
+our data looks like it looks like this
+and I would say from if we're gonna use
+our data to answer this question what
+we're gonna really need to look at is
+this order date and we're going to
+basically need to figure out a way that
+we can kind of aggregate all of the
+order dates into there like distribution
+over a 24-hour period so all right so
+how can we do that so the first option
+we could do is maybe like parse this
+like a string just like we drive the
+month column and just get the first two
+digits that could potentially work but
+you know I get a little bit worried
+about you know if this order date
+changes at all
+you know the format of it you know maybe
+grabbing the hour here doesn't stay
+exactly the same so what we're gonna do
+instead is convert this order date into
+a date/time object and basically the
+date/time library in Python allows us to
+like really act easily access different
+parts of a date you know the time the
+hour the minute
+in a very like pythonic fashion so it
+will be a lot less hacking than trying
+to parse this string manually and like
+try to just hope that the format stays
+exactly the same the date/time library
+even if this date format changes a bit
+it's a pretty smart tool and can kind of
+do some filling in of the gaps to figure
+out exactly what part of the date means
+what so sorry I have them saying order
+date here
+I want all data order date to be
+converted into a date time object I
+think right now it is a string and so to
+convert it into a date/time object we
+can do PD dot to date/time so just like
+earlier in the tutorial we did PD dot
+two numeric to convert a row of strings
+into a row of integers and floats we can
+do this to convert this column into a
+date/time column and the only potential
+caveat of doing this is that the
+date-time format will probably be larger
+than the string that's like currently
+stored in here as far as memory space
+goes but I don't think in most cases as
+long as your data is you know relatively
+or isn't ginormous usually the the
+performance here won't be terrible so I
+think it's worth doing so let's run Nats
+and this takes a little while because
+there is a little bit of a hefty
+calculation so once you do this once
+though you don't have to do it again so
+it should run quickly again after you've
+converted that column to daytime right
+and I can show the data again and you
+know it's changed slightly now you see
+it's in a different syntax if you really
+wanted to and wanted to keep the
+original format you could have gone
+ahead and duplicated this duplicated
+this column to be like order date and
+then parentheses date-time format or so
+like that but I'm fine with replacing it
+as we did and so know what is nice about
+this is if I want to add the hour
+because ultimately I might want to group
+by the hour or maybe the minute the hour
+in the minute I'm going to add an hour
+column to our data and it is really
+simple now that we've converted that
+column to the date-time format all I
+have to do is do all data grab that
+order date column and now I have access
+to doing this dot date syntax and then
+once I do the dot date I can do dot our
+and watch this so we have like the
+eighth hour here the 22nd hour here the
+14th hour here and now when I run this
+line and I'll just show the data after
+look at that we get 8 here 22 here 14
+here it just like knows what part of
+this date is the hour so that's pretty
+cool and we can also augment this to be
+also do the minute by doing all data
+order date dot date dot minute and you
+know this type of thing I keep repeating
+this in this tutorial you know I'm not
+always remembering this off the top of
+my head I am like just trying to find
+smart ways to work with dates and it
+leads me to maybe the documentation that
+leads me to this or maybe it leads me to
+a stack overflow that leads me to this
+so watch this now we got what I do all
+day to order date what did idea what I
+do oh I probably should have an equal
+sign here cool and look at that so 846
+that becomes 846 so now that we have
+these two columns we can go ahead and do
+some figuring out of the best time and
+you know this is basically a repeat of
+question 1 in question 2 now let's do
+some group by and then plot some stuff
+so similarly as we did in this one I
+want to use this format to grab our keys
+and to start out I'm going to say that
+we want to have the
+hours the hour for our DF and all data
+grouped by and then we're going to grab
+the hour column so this will be our
+hours keys that we'll use in our graph
+and this time instead of using the bar
+chart that we used in the past graphs
+I'm going to make this look a little bit
+more continuous and I'm gonna use a
+we're gonna use a line chart so we can
+to do that as long as you've loaded in
+matplotlib somewhere in this tutorial
+already you can do plot dot plot we have
+our hours and then what is our Y data
+well our Y data is going to be the
+result of the all data that I group by
+of the hour column and then we don't
+actually need to sum up these different
+values here in these columns what we can
+do instead in this case is actually just
+do a count to see what happens there
+happened cool that looks good let me so
+we did an all data group by our and then
+we just counted the number of rows by
+each hour so I could if I would be
+helpful just real quick print this out
+and you see all of these are the count
+which is the number of occurrences of
+orders for that specific hour so if we
+plot it out it just kind of had done
+we get this nice chart and so what does
+this chart tell us well if we maybe it
+would be helpful to add some labels so
+all had a couple labels real quick so
+what do we want so maybe let's make the
+X ticks the hours just so we can see
+each hour easily so what happens there
+so we have all of these tick marks now
+one thing it's still tough is it's hard
+for me to visually see what each tick
+mark corresponds to on this chart so
+what I can also add on this chart is the
+grid which is kind of a nice little
+feature and that makes it a lot easier
+for us to actually see which hour
+probably is the best so let's look at
+this we have peaks at around 11 a.m. or
+11 1111 a.m. whatever you however you
+speak your x and then another peak at
+around 19 so about 7:00 p.m. that is so
+11 a.m. and 7:00 p.m. that kind of makes
+sense it's like you know early in the
+day you're getting maybe you're doing
+your chores or like 7:00 p.m. makes
+sense maybe it's after work type of deal
+so those are the peak times that people
+make orders so if I was to answer this
+question I would say you know we should
+probably if we were to advertise
+effectively what is the question asking
+what time should we display
+advertisements immaculate maximize
+likelihood of customers buying I would
+say this chart kind of shows us that you
+know maybe right before 11:00 a.m. is a
+good time to put an ad or 12 is a good
+time to put an ad or you know 6 p.m. or
+7:00 p.m. 18 or 19 here would be good
+times to display ads because those were
+the peaks of when all the orders in our
+data set happened and we could label
+this chart the same way we did for the
+other ones if we want to so I could do
+like
+cool that looks pretty good to me and
+this is something you could present to a
+business person and say hey look at this
+data this is from the past year let's
+target our ads at this time in this time
+and maybe you would break it down a
+little bit further because this chart
+was for the entire every city maybe you
+could do specific charts for certain
+cities it's all stuff worth playing
+around with all right the next question
+is what products are most often sold
+together so feel free to pause the video
+and try to solve this on your own I will
+note that I thought this was a
+particularly hard question so kudos T if
+you can solve it without seeing my
+solution
+all right so how would I go about
+solving this and I guess to introduce
+the problem the first thing to note is
+how do we know if a product is sold
+together with another product well if
+you look at these order ID values I
+guess we do get to see one right here if
+they have the same order ID then that
+means that this Google phone and these
+wired headphones were ordered together
+because you know they have the same
+order ID and they also are delivered as
+you can see to the same address so
+basically we're trying to figure out
+counting all of the duplicate order IDs
+which products were sold together the
+most and yeah as I said I didn't think
+this was particularly easy I thought
+this was pretty challenging so don't
+worry if you couldn't get this one on
+your own because I was scouring Stack
+Overflow to just figure it out myself
+and I was the one that asked the
+question so all right so how would I do
+it well the first thing is I wanted to
+know we want to know all the spots in
+our data frame I guess that are half
+duplicate rows because those are the
+only rows we need to worry about that
+have duplicate order IDs because that
+will ultimately let us find which
+products were sold together so let's
+create a new data frame for this and
+we're going to take our all data and
+we're going to filter by all data order
+ID and then do dot duplicate it so this
+will check all the rows or all the cells
+in the order
+I D column and see which ones are
+duplicated and then we're gonna pass in
+this keep equals false so I'm going to
+now show you what this data frame looks
+like and we'll pass in let's say 20
+values here as you can see this and this
+have the same order ID this and this how
+the same water ID this and this
+sometimes you'll see like three values
+it's possible that you had three values
+that were all ordered together but yeah
+it just stripped that big all data data
+frame down into just the duplicate one
+so we can work with this data frame now
+to do the additional stuff and I think
+in the the final kind of solution
+Jupiter notebook that I have all
+reference what second were four links I
+used here and another helpful trick is
+that if you're like you know you kind of
+understand this command but you don't
+understand why I passed keep equals
+false here if you're using a Jupiter
+notebook at the end of the column that
+was run you can do shift tab and it
+opens up the docstrings for it so you
+see this keep parameter and if I expand
+this keep is basically whether or not
+you should just keep the first
+occurrence of the dupe kit if you should
+keep the last occurrence of the
+duplicate or if you should keep all as
+all duplicates and that's why we passed
+and false because we want to keep
+everything all right so what do we do
+now that we have all these duplicates
+well we need to start like grouping them
+together so I'm going to create a new
+column in our data frame and I'm going
+to call it grouped and this is where
+some funky stuff is going to happen
+where I basically want to create a new
+column that's going to have Google phone
+and wired headphones on the same line so
+that's when when you see the magic that
+I'm about to put on the screen that's
+ultimately what I'm trying to get at is
+you know instead of having these on
+different lines let's get them all on
+the same line and so to do that
+we're gonna add a column called grouped
+and we're going to group by the order ID
+now from our filter DF that's the only
+the duplicator rows
+so we have our order ID and then what
+we're specifically looking at within the
+order ID is the product column and then
+we're gonna use a function called
+transform and transform is similar to
+like apply where it takes in like lambda
+X if you want to edit actual cell
+contents and so for all of the order IDs
+groups my product that are grouped
+together we're gonna for each one of
+those X's we're going to do some joining
+so we're gonna join them by I'm going to
+say commas so what does this now look
+like hopefully that works we'll say
+maybe this takes a little while cool it
+looks like it worked
+and you know read whatever this is
+saying I'm not sure quite what it that's
+happening it's telling me to use a look
+so I maybe should be using look
+somewhere but it is all working you see
+that we have Google phone comma wired
+headphones here in the group to call
+them so that looks good and now let's
+think the one issue I do have is that we
+have this same order twice because we
+did this in every situation in the group
+by so we have two and three of the
+exactly the same so let's drop out those
+duplicated occurrences of the same order
+like the same pairs in the order so
+we're gonna get rid of duplicates here
+and to do that we can do DF equals DF
+and we're gonna just worry about the
+order ID and the group's values and
+because otherwise some of this other
+stuff might be different like if we
+accidentally take the index but we
+probably don't have to filter it exactly
+like this but we'll take those two
+columns and drop the duplicates all
+right so what do we get now and your D F
+dot head oh this we drop duplicates like
+this cool that looks good to me we have
+like as we saw before this one now only
+occurs a single time so when we're
+actually counting these up one or
+iterating over all the rows and our
+final this DF we can now use like pretty
+out of 100 that was a lot basically
+we're going to iterate over all these
+rows and count these pairs now and use
+that to get our final count of what
+products are sold most often together
+okay so let's move to another cell to do
+this last part okay so we have a data
+frame that looks like this and so now we
+need to count the pairs of what occurs
+together most frequently and we're gonna
+use a couple new libraries for this
+we're going to import itertools we're
+going to from-from inter tools we're
+going to import combinations and from
+collections we're an import counter and
+as I said before in these columns in
+these cells when I when you look at the
+final solution for this
+I'll have pasted in there as you see I
+just did with this one the stack
+overflow posts that I've linked that I
+looked at when I was doing this but okay
+so how do we do this well basically yeah
+it looked at this stack overflow so I
+can reference this one and see kind of
+how we can use it to help us
+all right so let's look at the Stack
+Overflow post we have a list of comma
+separated values we can kind of think
+about like we could probably convert
+that grouped column we have into a
+formula like this but we have a list of
+lists that have that and then we update
+the count based on the combinations in
+the sub lists so if we can just
+duplicate this form format then we can
+do it with one and ultimately get a
+dictionary out like this so let's do
+that real quick well the first part of
+that answer was to have a counter so we
+do count counter and then it was for sub
+list and list basically we had to
+iterate through so we want to use this
+as our sub list well to do that we can
+do for row in guru or the data frame and
+the grouped column and so this will now
+get us each one of these entries okay so
+now we want to get a list because in
+that original sack overflow post we have
+a sub list so the row list we could do a
+row dot split on the comma and get a sub
+list which is kind of nice then we can
+copy the format with the counter with
+our own variable names so that would be
+count to update update counter
+combinations row list and then we want
+to count pairs of two so if you wanted
+to count like the most common three-way
+occurrences you could do some unit pass
+in three here so we now have that
+counter so if I print count I think we
+should see something nice ah that's
+pretty messy but I think it does tell us
+what's the first thing I phone in a
+lightning charging cable those were the
+most to those items that were most
+commonly ordered together but if we want
+a nicer formatting of this we could do
+count dot most common 10 this went with
+a counter object there's a most common
+method and that should yeah that's a
+little bit nicer where we can see the
+pair's
+in a more readable fashion and if we
+want to get even more readable from that
+we could do a four key value in count
+most common and then print just key
+comma value and that will give us this
+which is I guess a little bit easier to
+read and I'm actually just curious or
+quick would we get the most common three
+in a row if we did with the three here
+well look at that so if you wanted to
+see the most the items that were most
+commonly sold as three items together
+you do that past the three in year but
+we'll keep that as a two and that's
+pretty cool and so what would we do with
+this well you know maybe you try to be
+smart with promotions that you're
+offering if you're selling an iPhone
+maybe like try to smart offer a smart
+deal so you get more people people
+already probably want to buy an extra
+lightning charging cable but maybe you
+do a smart deal where you can kind of
+lure an even bigger audience to buy that
+lightning charger cable and you can kind
+of repeat that with these other common
+pairs and maybe try to you know use that
+to your advantage as a business user so
+this data would help a business kind of
+make decisions like that
+all right let's end this video with one
+last question and this final question
+will just be a little bit definitely
+simpler than the last one and it's gonna
+be what products sold the most and why
+do you think it's sold the most okay so
+how would we go about doing this well we
+can start off with the same old group
+group buy stuff so all data head let's
+see our data and really all we have to
+do to figure out what products sold the
+most is we need to sum up the quantity
+ordered based on grouping by the product
+so to do that we can do all data group
+by product then I'm gonna do this
+slightly different than I have in the
+past just to clean keep things fairly
+clean the product group equals all data
+grouped by so if I printed product group
+I don't know if it will
+and won't do much yet but if we go ahead
+and display product groups um we can use
+the quantity order to figure out the
+best things and we probably should keep
+it as a graph again that's usually the
+best play
+so quantity ordered if we wanted to
+abstract it away to a variable would be
+equal to product group dot sum and then
+quantity ordered all right and then we
+can graph it just like we've graphed the
+ones above I'm gonna make this a bar
+chart again so I'll take maybe this so
+products will say product for product DF
+and and this would be instead of this
+the product group what happened
+oh I spelled wrong
+ah no it smells wrong again
+all right and now we want to plot plot
+dot bar our X will be the products and
+our y will be the quantity ordered that
+looks good oh look at those labels those
+are pretty let's do the rotation that we
+did in the last one of the last examples
+I'll just paste that in Jesus oh I
+pasted it in from the wrong spot look at
+that
+you got nicer looking graph there and if
+you want to get rid of this annoying
+stuff that comes before and you're using
+Juber Novik just do the plot up show
+look at that okay and now probably
+should add a label if we want to plot y
+label equals one t or just number
+ordered and then the quantity ordered I
+guess it probably better as quantity
+ordered it you know it is taking into
+account the fact that you might order
+two of the same product and that's all
+summed up into this and then our X label
+was X label was product okay so now that
+I have this graph you know the question
+originally was what product sold the
+most and why do you think it's almost
+well we can see that Triple A batteries
+were the most hot item at the keith's
+fancy smancy electronic store
+immediately maybe I've got feeling on
+why it might be sold the most let's see
+the other items that are sold the most
+the Lightning charging cable the USBC
+charging cable wired headphones double-a
+batteries and why would that be sold
+more than like an LD dryer an LG washing
+machine well the
+immediate reaction that I have when
+looking at this data is that those items
+are cheap like triple-a batteries and LG
+dryer is not cheap so that's probably
+the reason why this is a lot higher than
+the other ones but you know as data
+scientist it's often good to prove our
+hypotheses so what we could do is
+overlay this graph with maybe the actual
+prices of these items and see if there
+is that like kind of direct correlation
+okay
+so let's make a new cell to do this I'd
+start off let's get the prices and so to
+do that we could group by the product
+and in addition to sum and count that
+you've seen in this video there's also
+dot mean and what we want the mean of
+well we want the price each that will be
+kind of the average price these things
+sold for price each okay so let's print
+out prices and just Shh look at that you
+got all the prices of these objects
+that's pretty straightforward okay so
+now that we have that now we need to
+figure out how do we overlay this data
+on a chart into this graph and add a
+secondary y-axis I guess that would be
+the price over here on the right but
+keep the same X labels so as we've done
+and you know several times throughout
+this video let's use our handy-dandy
+friend the internet to help us out and
+doing this so we want to add a second y
+axis to a matplotlib chart and let's see
+what we get when we query this okay so a
+second Y access to the matplotlib chart
+you get one post here the top result is
+from matplotlib
+org and oftentimes you know math motley
+org does some good stuff but often times
+I usually find the easiest solutions
+come with sack overflow post so I'm
+going to take the first one here and see
+if I can adapt what the answer is to
+what I'm trying to do so the best so the
+question is adding a y-axis label to a
+secondary y-axis and math lib and this
+answer that has a lot of up votes and I
+always been kind of judging the efforts
+to make sure it seems pretty liked by a
+lot of people it uses this fig x1 plot
+subplot so we're gonna want to use
+subplots and I think basically we could
+probably copy this code pretty exact and
+then just adapt it to what we need so
+I'm gonna do that
+so pacing all this and so instead of
+plotting X and y1 like they have will
+ultimately plot what we use as our X&Y
+data so in both cases our X data is
+going to be the products so we can pass
+that in as our X Pasadena's or X ok so
+this first graph we could take the bar
+chart instead of doing a a plot here
+let's do the bar chart that we had
+before and actually we can probably just
+take this exactly so basically replacing
+the Y label with the quantity ordered
+like we had before and then over here X
+2 well that is going to and sorry this
+should not be flat bar this should be X
+1 bar I shouldn't have changed that ok
+execute plot products y 2 y 2 is now our
+prices and this P minus that's going to
+be how the line is displayed of the line
+chart so we could keep that we might
+play around with that in a sec set X
+label
+well our X label is the same for both
+our wise and that's the product name a
+the y label will be the first line label
+that's associated with the bar chart is
+quantity ordered
+and the second why label is price and we
+could say in US dollars if we want to
+but I'll just do price here okay
+let's hope that this works hey look at
+that it's still a little bit ugly here's
+a little thing I already had written
+down because this was a little bit
+tricky but we can set the X tick labels
+with the axis using this format it's a
+little bit different than plot dot X
+ticks but that should do the rotation
+that we've been doing look at that cool
+cool
+and then we should just get the price to
+sync up the colors to sync up so the
+quantity ordered has a color green here
+so let's also pass this in as color
+green okay cool so now we have a chart
+that's overlaid our graph that's
+overlaid on another graph and the blue
+we have the price and in the green we
+have the quantity ordered so if the
+price and the quantity ordered kind of
+like correlate and that's kind of we're
+trying to like prove our hypothesis
+whenever the quantity ordered is high
+this should be low and as we see that is
+the case for the triple-a and double-a
+batteries as we go to the other products
+like LG dryer that's pretty dang
+expensive and it makes sense that you
+know it might it caused it to be low
+over here and then you look at some
+inconsistencies with that like you might
+say hey the price is very high for the
+Mac paw the MacBook Pro laptop and the
+ThinkPad laptop why is the quantity
+ordered like it's so much higher than
+the LG dryer and LG washing machine well
+you know I guess more people are looking
+to buy MacBook Pros you know there's
+more students in the world there's more
+more demand for MacBook Pros so this
+overlay can't tell us everything but I
+would say it is pretty good evidence for
+why like the double-a and triple-a
+batteries are so high
+I the Lightning charging cable is so
+high the USBC charging cable is so high
+those are such low prices that the like
+the quantity ordered ultimately shoots
+up because more willing more people are
+willing to pay that price alright with
+that we're gonna end the video here
+hopefully you guys learned something and
+also had fun with this tutorial I know I
+had a lot of fun personally making this
+tutorial from curating the data to
+asking business questions to using the
+data to analyze those questions so
+hopefully you also enjoyed that process
+if you did enjoy this video they mean a
+lot to me if you throw a big thumbs up I
+want to make more videos like this in
+the future but the only way that I'm
+gonna you know know to do that is if you
+guys show interest in this one so
+throwing a big thumbs up with me a lot
+also while you're at it subscribe and if
+you want a more up-to-date on what I'm
+doing you know day in day out check out
+my Instagram and Twitter alright till
+the next video thanks again guys for
+watching peace out
+[Music]
