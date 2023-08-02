@@ -4,7 +4,8 @@ from youtube_transcript_api.formatters import JSONFormatter
 from youtube_transcript_api import YouTubeTranscriptApi
 class YtInfo:
     def __init__(self):
-        self.subtitle_result=''
+        self.subtitle_json=''
+        self.subtitle_text=''
 
     #Searching Channel Info From Channel Username
     def channel_info_by_username(self,channel_username):
@@ -55,15 +56,15 @@ class YtInfo:
     #Subtitle Scraping From YT Videos
     def subtitle_info(self,yt_video_link):
         def Get_subtitle(video_code):
-            subtitle=YouTubeTranscriptApi.get_transcript(video_code)
-            print(subtitle)
-            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\subtitle.txt",'w') as file:
-                subtitle_result_text = TextFormatter().format_transcript(subtitle)
-                file.write(str(subtitle_result_text))
-            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\subtitle.json",'w') as file:
-                file.write(str(subtitle))
+            self.subtitle_json=YouTubeTranscriptApi.get_transcript(video_code)
+            print(self.subtitle_json)
+            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\subtitle.txt",'w') as file:
+                self.subtitle_text = TextFormatter().format_transcript(self.subtitle_json)
+                file.write(str(self.subtitle_text))
+            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\subtitle.json",'w') as file:
+                file.write(str(self.subtitle_json))
         try:
             Get_subtitle(yt_video_link[32:43])
         except:
             Get_subtitle(yt_video_link[17:29])
-        return self.subtitle_result
+        return self.subtitle_json
