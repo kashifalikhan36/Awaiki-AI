@@ -4,6 +4,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from PyPDF2 import PdfReader, PdfWriter
+from io import BytesIO
 
 def create_pdf(heading, image_path, paragraph):
     # Define styles for the heading and paragraph
@@ -38,7 +39,7 @@ def create_pdf(heading, image_path, paragraph):
 
     return story
 
-def append_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph):
+def append_to_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph):
     # Create content for the new page
     new_page_content = create_pdf(heading, image_path, paragraph)
 
@@ -51,14 +52,13 @@ def append_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph):
         new_pdf.add_page(page)
 
     # Create a new page and add the content to it
-    new_page = SimpleDocTemplate("temp.pdf", pagesize=A4)
-    new_page.build(new_page_content)
+    buffer = BytesIO()
+    doc = SimpleDocTemplate(buffer, pagesize=A4)
+    doc.build(new_page_content)
 
-    # Append the new page to the new PDF
-    with open("temp.pdf", "rb") as temp_file:
-        temp_pdf = PdfReader(temp_file)
-        for page in temp_pdf.pages:
-            new_pdf.add_page(page)
+    # Add the new page to the new PDF
+    buffer.seek(0)
+    new_pdf.addPage(PdfReader(buffer).pages[0])
 
     # Save the final PDF
     with open(output_pdf_path, "wb") as output_file:
@@ -75,4 +75,4 @@ if __name__ == "__main__":
         will be added to the PDF document.
     """
 
-    append_pdf(input_pdf_path, input_pdf_path, heading, image_path, paragraph)
+    append_to_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph)

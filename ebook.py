@@ -9,86 +9,88 @@ class Ebook:
     def __init__(self):
         pass
 
-def create_pdf(heading, image_path, paragraph):
-    # Define styles for the heading and paragraph
-    styles = getSampleStyleSheet()
-    center_alignment = 1  # 1 corresponds to center alignment
+    def create_pdf(self,output_path, heading, image_path, paragraph):
+        doc = SimpleDocTemplate(output_path, pagesize=A4)
 
-    heading_style = ParagraphStyle('h1', parent=styles['Title'], fontSize=20, alignment=center_alignment)
-    paragraph_style = ParagraphStyle('CustomParagraphStyle', parent=styles['Normal'], fontSize=12, alignment=center_alignment)
+        # Define styles for the heading and paragraph
+        styles = getSampleStyleSheet()
+        heading_style = ParagraphStyle('h1', parent=styles['Title'], fontSize=20)
+        paragraph_style = ParagraphStyle('CustomParagraphStyle', parent=styles['Normal'], fontSize=16,alignment=1)
 
-    # Prepare the story (content elements to be included in the PDF)
-    story = []
+        # Prepare the story (content elements to be included in the PDF)
+        story = []
 
-    # Add the heading
-    heading_text = f"<b>{heading}</b>"
-    heading_paragraph = Paragraph(heading_text, heading_style)
-    story.append(heading_paragraph)
+        # Add the heading
+        heading_text = f"<b>{heading}</b>"
+        heading_paragraph = Paragraph(heading_text, heading_style)
+        story.append(heading_paragraph)
 
-    # Add a spacer to center the image vertically
-    story.append(Spacer(1, 0.5*inch))
+        # Add the image
+        image = Image(image_path, width=6*inch, height=4*inch)
+        story.append(image)
 
-    # Add the image with center alignment
-    image = Image(image_path, width=6*inch, height=4*inch, hAlign=center_alignment)
-    story.append(image)
+        # Add the paragraph
+        paragraph_text = "<br/>".join(paragraph.split("\n"))  # Convert newlines to HTML line breaks
+        paragraph = Paragraph(paragraph_text, paragraph_style)
+        story.append(paragraph)
 
-    # Add a spacer to center the paragraph vertically
-    story.append(Spacer(1, 0.5*inch))
+        # Build the PDF document
+        doc.build(story)
 
-    # Add the paragraph with center alignment
-    paragraph_text = "<br/>".join(paragraph.split("\n"))  # Convert newlines to HTML line breaks
-    paragraph = Paragraph(paragraph_text, paragraph_style)
-    story.append(paragraph)
+    def append_pdf(self,input_pdf_path, output_pdf_path, heading, image_path, paragraph):
+        def create_pdf(heading, image_path, paragraph):
+            # Define styles for the heading and paragraph
+            styles = getSampleStyleSheet()
+            center_alignment = 1  # 1 corresponds to center alignment
 
-    return story
+            heading_style = ParagraphStyle('h1', parent=styles['Title'], fontSize=20, alignment=center_alignment)
+            paragraph_style = ParagraphStyle('CustomParagraphStyle', parent=styles['Normal'], fontSize=12, alignment=center_alignment)
 
-def append_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph):
-    # Create content for the new page
-    new_page_content = create_pdf(heading, image_path, paragraph)
+            # Prepare the story (content elements to be included in the PDF)
+            story = []
 
-    # Load existing PDF and create a new PDF
-    existing_pdf = PdfReader(input_pdf_path)
-    new_pdf = PdfWriter()
+            # Add the heading
+            heading_text = f"<b>{heading}</b>"
+            heading_paragraph = Paragraph(heading_text, heading_style)
+            story.append(heading_paragraph)
 
-    # Append the existing pages to the new PDF
-    for page in existing_pdf.pages:
-        new_pdf.add_page(page)
+            # Add a spacer to center the image vertically
+            story.append(Spacer(1, 0.5*inch))
 
-    # Create a new page and add the content to it
-    new_page = SimpleDocTemplate("temp.pdf", pagesize=A4)
-    new_page.build(new_page_content)
+            # Add the image with center alignment
+            image = Image(image_path, width=6*inch, height=4*inch, hAlign=center_alignment)
+            story.append(image)
 
-    # Append the new page to the new PDF
-    with open("temp.pdf", "rb") as temp_file:
-        temp_pdf = PdfReader(temp_file)
-        for page in temp_pdf.pages:
+            # Add a spacer to center the paragraph vertically
+            story.append(Spacer(1, 0.5*inch))
+
+            # Add the paragraph with center alignment
+            paragraph_text = "<br/>".join(paragraph.split("\n"))  # Convert newlines to HTML line breaks
+            paragraph = Paragraph(paragraph_text, paragraph_style)
+            story.append(paragraph)
+
+            return story
+        # Create content for the new page
+        new_page_content = create_pdf(heading, image_path, paragraph)
+
+        # Load existing PDF and create a new PDF
+        existing_pdf = PdfReader(input_pdf_path)
+        new_pdf = PdfWriter()
+
+        # Append the existing pages to the new PDF
+        for page in existing_pdf.pages:
             new_pdf.add_page(page)
 
-    # Save the final PDF
-    with open(output_pdf_path, "wb") as output_file:
-        new_pdf.write(output_file)
+        # Create a new page and add the content to it
+        new_page = SimpleDocTemplate("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\temp.pdf", pagesize=A4)
+        new_page.build(new_page_content)
 
-if __name__ == "__main__":
-    output_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\output.pdf"
-    heading = "My Heading"
-    image_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_1.jpg"
-    paragraph = """
-        This is a sample paragraph.
-        It can have multiple lines and
-        will be added to the PDF document.
-    """
+        # Append the new page to the new PDF
+        with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\temp.pdf", "rb") as temp_file:
+            temp_pdf = PdfReader(temp_file)
+            for page in temp_pdf.pages:
+                new_pdf.add_page(page)
 
-    create_pdf(output_path, heading, image_path, paragraph)
-
-if __name__ == "__main__":
-    input_pdf_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\ebook\\output.pdf"
-    output_pdf_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\ebook\\Mdified_output.pdf"
-    heading = "My Heading"
-    image_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\ebook\\image_1.jpg"
-    paragraph = """
-        This is a sample paragraph.
-        It can have multiple lines and
-        will be added to the PDF document.
-    """
-
-    append_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph)
+        # Save the final PDF
+        with open(output_pdf_path, "wb") as output_file:
+            new_pdf.write(output_file)
