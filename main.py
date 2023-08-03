@@ -50,6 +50,7 @@ for num in range(0,int(end_of_length)-1):
     script=str(script)+" "+str(caption_timestamp[num]['text'])
     if int(caption_timestamp[num]['start']) % 21 == 0:
         story=generate_content(script,num)
+        
         audio_story+=str(dict(story)["paragraph"])+"\n"
         script=""
         num+=1
