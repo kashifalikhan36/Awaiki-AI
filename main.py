@@ -23,6 +23,9 @@ image_prompt=slidedata.generate_image_prompt(str(dict(reply)["Heading"]))
 #Generating Image
 slidedata.generate_image(image_prompt,"1")
 
+#Import Data In Pdf
 
+
+#Get Youtube Channel Info
 # info.channel_info_by_id('https://www.youtube.com/channel/UCL4-nC0SGWbAYk8iX2oJt-g')
 # info.channel_info_by_username('https://www.youtube.com/@codeRECODE')
