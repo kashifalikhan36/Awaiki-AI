@@ -58,10 +58,10 @@ class YtInfo:
         def Get_subtitle(video_code):
             self.subtitle_json=YouTubeTranscriptApi.get_transcript(video_code)
             print(self.subtitle_json)
-            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\subtitle.txt",'w') as file:
+            with open("./data/subtitle.txt",'w') as file:
                 self.subtitle_text = TextFormatter().format_transcript(self.subtitle_json)
                 file.write(str(self.subtitle_text))
-            with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\subtitle.json",'w') as file:
+            with open("./data/subtitle.json",'w') as file:
                 file.write(str(self.subtitle_json))
         try:
             Get_subtitle(yt_video_link[32:43])

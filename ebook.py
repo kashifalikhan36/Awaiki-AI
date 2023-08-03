@@ -82,11 +82,11 @@ class Ebook:
             new_pdf.add_page(page)
 
         # Create a new page and add the content to it
-        new_page = SimpleDocTemplate("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\temp.pdf", pagesize=A4)
+        new_page = SimpleDocTemplate("./data/temp.pdf", pagesize=A4)
         new_page.build(new_page_content)
 
         # Append the new page to the new PDF
-        with open("C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\temp.pdf", "rb") as temp_file:
+        with open("./data/temp.pdf", "rb") as temp_file:
             temp_pdf = PdfReader(temp_file)
             for page in temp_pdf.pages:
                 new_pdf.add_page(page)

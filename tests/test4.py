@@ -18,6 +18,6 @@
 #     if response.status_code == 200:
 #         image_content = BytesIO(response.content)
 #         image = Image.open(image_content)
-#         image.save(f"C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_{num}.jpg")
+#         image.save(f"./data/image_{num}.jpg")
 #     else:
 #         print("Failed to download the image. Check the URL or try again later.")

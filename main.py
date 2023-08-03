@@ -11,7 +11,7 @@ audioBook=AudioBook()
 #Generating Content
 def generate_content(script,num):
     reply=slidedata.generate_data(script)
-    with open('C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\slide_output_data.json', 'a') as slide_data:
+    with open('./data/slide_output_data.json', 'a') as slide_data:
                 slide_data.write(str(reply)+",")  
 
     #Generating Slide Data Image Prompt
@@ -21,10 +21,10 @@ def generate_content(script,num):
     slidedata.generate_image(image_prompt,str(num))
 
     #Genetraing ebook
-    pdf_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\ebook_and_audiobook\\input.pdf"
+    pdf_path = "./ebook_and_audiobook/input.pdf"
     heading = str(dict(reply)["Heading"])
     paragraph=str(dict(reply)["paragraph"])
-    image_path = f"C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_{num}.jpg"
+    image_path = f"./data/image_{num}.jpg"
     if int(num)==0:
         make_content(pdf_path, heading, image_path, paragraph)
     else:
@@ -44,7 +44,7 @@ def add_content(input_pdf_path, output_pdf_path, heading, image_path, paragraph)
 audio_story=""
 script=""
 num=0
-caption_timestamp=info.subtitle_info('https://www.youtube.com/watch?v=D56_Cx36oGY')
+caption_timestamp=info.subtitle_info('https://youtu.be/qzH_Eam4MNs')
 end_of_length=len(caption_timestamp)
 for num in range(0,int(end_of_length)-1):
     script=str(script)+" "+str(caption_timestamp[num]['text'])

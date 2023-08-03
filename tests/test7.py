@@ -65,10 +65,10 @@ def append_to_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragrap
         new_pdf.write(output_file)
 
 if __name__ == "__main__":
-    input_pdf_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\output.pdf"
+    input_pdf_path = "./data/output.pdf"
     output_pdf_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\ebook\\Mdified_output.pdf"
     heading = "My Heading"
-    image_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_1.jpg"
+    image_path = "./data/image_1.jpg"
     paragraph = """
         This is a sample paragraph.
         It can have multiple lines and

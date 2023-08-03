@@ -15,10 +15,10 @@
 #     paragraph_shape = slide.shapes.placeholders[1]
 #     paragraph_shape.text = paragraph
 
-#     prs.save('C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\my_presentation.pptx')
+#     prs.save('./data/my_presentation.pptx')
 
 # if __name__ == '__main__':
-#     create_slide('My Heading', 'C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_1.jpg', 'This is my paragraph. It is 100 words long.')
+#     create_slide('My Heading', './data/image_1.jpg', 'This is my paragraph. It is 100 words long.')
 
 
 from reportlab.lib.pagesizes import A4
@@ -56,9 +56,9 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 #     doc.build(story)
 
 # if __name__ == "__main__":
-#     output_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\output.pdf"
+#     output_path = "./data/output.pdf"
 #     heading = "My Heading"
-#     image_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_1.jpg"
+#     image_path = "./data/image_1.jpg"
 #     paragraph = """
 #         This is a sample paragraph.
 #         It can have multiple lines and
@@ -96,9 +96,9 @@ def create_pdf(output_path, heading, image_path, paragraph):
     doc.build(story)
 
 if __name__ == "__main__":
-    output_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\output.pdf"
+    output_path = "./data/output.pdf"
     heading = "My Heading"
-    image_path = "C:\\Users\\Kashif\\Documents\\GitHub\\UST_d3code\\data\\image_1.jpg"
+    image_path = "./data/image_1.jpg"
     paragraph = """
         This is a sample paragraph.
         It can have multiple lines and
