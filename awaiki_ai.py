@@ -43,7 +43,7 @@ def analyze_and_convert(video_link):
     audio_story=""
     script=""
     num=0
-    caption_timestamp=info.subtitle_info('https://youtu.be/qzH_Eam4MNs')
+    caption_timestamp=info.subtitle_info(video_link)
     end_of_length=len(caption_timestamp)
     for i in range(0,int(end_of_length)-1):
         script=str(script)+" "+str(caption_timestamp[num]['text'])
