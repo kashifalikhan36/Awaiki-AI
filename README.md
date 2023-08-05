@@ -38,7 +38,7 @@ Python (version 3.X.X)
 Listen, my friend, the converted content is for personal use only. Don't get yourself into trouble by disrespecting copyright laws or selling this stuff without permission. You've been warned!
 
 #License
-(Choose an epic license and provide details here)
+MIT
 
 #Contributions
 Hey, don't be shy! Join the party! Contribute like a hero – open issues, slay bugs, add awesome features – just make sure you're part of this legend!
