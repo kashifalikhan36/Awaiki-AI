@@ -66,8 +66,8 @@ class SlideData:
 
         self.messages.append({"role": "assistant", "content": prompt})
 
-        with open('./data/slide_input_image.txt', 'a') as slide_data:
-            slide_data.write(str(prompt)+"\n")
+        with open('./data/slide_input_image.json', 'a') as slide_data:
+            slide_data.write(str(prompt)+",\n")
         return prompt
 
     def generate_image(self,prompt,num):
@@ -103,7 +103,7 @@ class SlideData:
 
         self.audiotext_messages.append({"role": "assistant", "content": reply})
 
-        with open('./data/audiotext_input_data.json', 'a') as slide_data:
+        with open('./data/audiotext_input_data.txt', 'a') as slide_data:
             slide_data.write("{'story': '''"+str(reply)+"'''} \n ,")
         
         # # Convert the text format into a Python dictionary

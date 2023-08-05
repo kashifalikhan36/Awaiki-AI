@@ -10,9 +10,7 @@ audioBook=AudioBook()
 
 #Generating Content
 def generate_content(script,num):
-    reply=slidedata.generate_data(script)
-    with open('./data/slide_output_data.json', 'a') as slide_data:
-                slide_data.write(str(reply)+",")  
+    reply=slidedata.generate_data(script)  
 
     #Generating Slide Data Image Prompt
     image_prompt=slidedata.generate_image_prompt(str(dict(reply)["Heading"]))
@@ -46,11 +44,10 @@ script=""
 num=0
 caption_timestamp=info.subtitle_info('https://youtu.be/qzH_Eam4MNs')
 end_of_length=len(caption_timestamp)
-for num in range(0,int(end_of_length)-1):
+for i in range(0,int(end_of_length)-1):
     script=str(script)+" "+str(caption_timestamp[num]['text'])
     if int(caption_timestamp[num]['start']) % 21 == 0:
         story=generate_content(script,num)
-        
         audio_story+=str(dict(story)["paragraph"])+"\n"
         script=""
         num+=1
