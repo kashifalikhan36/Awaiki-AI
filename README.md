@@ -1,4 +1,4 @@
-#Awaiki AI - YouTube Video to Ebook and Audiobook Converter
+# Awaiki AI - YouTube Video to Ebook and Audiobook Converter
 
 ## Introduction
 Awaiki AI is the ultimate YouTube Video to Ebook and Audiobook Converter, designed to blow your mind! It takes a simple YouTube video link as input and works its magic, transforming the content into kickass ebooks and badass audiobooks. No matter what kind of video it is – tutorials, lectures, blogs, or pure entertainment – Awaiki AI has got you covered!
