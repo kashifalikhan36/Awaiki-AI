@@ -2,3 +2,14 @@ google-auth-oauthlib
 google-auth-httplib2
 google-api-python-client
 youtube-transcript-api
+pydub
+gtts
+openai
+requests
+PIL
+io
+json
+reportlab
+PyPDF2
+googleapiclient
+youtube_transcript_api

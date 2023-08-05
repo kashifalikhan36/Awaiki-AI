@@ -1,3 +1,15 @@
-pip install --upgrade google-auth-oauthlib google-auth-httplib2
-pip install --upgrade google-api-python-client
-pip install youtube_transcript_api
+!pip install google-auth-oauthlib
+!pip install google-auth-httplib2
+!pip install google-api-python-client
+!pip install youtube-transcript-api
+!pip install pydub
+!pip install gtts
+!pip install openai
+!pip install requests
+!pip install PIL
+!pip install io
+!pip install json
+!pip install reportlab
+!pip install PyPDF2
+!pip install googleapiclient
+!pip install youtube_transcript_api

@@ -10,7 +10,7 @@ class YtInfo:
     #Searching Channel Info From Channel Username
     def channel_info_by_username(self,channel_username):
 
-        API_KEY="AIzaSyC4bmiRwvqo9WzVp_ZmExNdW7aspM-pbJ0"
+        #API_KEY_GOOGLE=
         channel_username=channel_username[25:]
 
         api_service_name = "youtube"
@@ -34,7 +34,7 @@ class YtInfo:
     #Searching Channel Info From Channel Id
     def channel_info_by_id(self,channel_id):
 
-        API_KEY="AIzaSyC4bmiRwvqo9WzVp_ZmExNdW7aspM-pbJ0"
+        #API_KEY_GOOGLE=
         channel_id=channel_id[32:57]
 
         api_service_name = "youtube"
