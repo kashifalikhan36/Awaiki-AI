@@ -1,8 +1,0 @@
-{"prompt": "Did You Know? The Secrets Behind..."}
-{"prompt": "Did You Know? The Secrets Behind YouTube Automation"}
-{"prompt": "A mysterious and intriguing image capturing the essence of hidden secrets waiting to be discovered"}
-{"prompt":"Create an eye-catching poster promoting automated scheduling for maximum visibility"}
-{"prompt": "Unlocking the Potential of YouTube Automation for Channel Growth"}
-{"prompt": "A digital illustration of a futuristic cityscape with a giant protective wall surrounding it, guarding the citizens of Apple"}
-{"prompt": "A futuristic concept of a high-tech wall designed to protect the citizens of Apple from external threats", "image_prompt": true}
-{"prompt": "A stunning visual representation of a futuristic high-tech wall surrounding Apple City, featuring advanced technologies and cutting-edge architectural design.", "caption": "A 3D rendering of a sleek and imposing high-tech wall, equipped with advanced security systems and a seamless integration with the cityscape of Apple City.", "tags": ["futuristic", "high-tech", "wall", "Apple City", "advanced technologies", "architectural design", "security systems"]}
