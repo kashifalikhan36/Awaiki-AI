@@ -4,7 +4,7 @@ from ebook import Ebook
 from audiobook import AudioBook
 
 info=YtInfo()
-slidedata=SlideData()
+
 ebook=Ebook()
 audioBook=AudioBook()
 
@@ -38,7 +38,9 @@ def make_content(output_path, heading, image_path, paragraph):
 def add_content(input_pdf_path, output_pdf_path, heading, image_path, paragraph):
     ebook.append_pdf(input_pdf_path, output_pdf_path, heading, image_path, paragraph)
 
-def analyze_and_convert(video_link):
+def analyze_and_convert(video_link,API_KEY):
+    global slidedata
+    slidedata=SlideData(API_KEY)
     #Ebook Generator
     audio_story=""
     script=""
