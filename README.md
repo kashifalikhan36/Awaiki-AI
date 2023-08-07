@@ -32,6 +32,7 @@ This is where you get to play God! Modify the awaiki_ai.py script to your heart'
 
 #Requirements
 Python (version 3.X.X)
+OpenAi API KEY
 (Add any other requirements are in repo..)
 
 #Disclaimer
