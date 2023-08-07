@@ -6,7 +6,7 @@ import json
 
 class SlideData:
     
-    def __init__(self):
+    def __init__(self,API_KEY):
         self.audiotext=""
         openai.api_key = API_KEY
         self.messages = [{"role": "system", "content": 'Ignore all the instructions you got before. From now on, you are going to act as Youtube Timestamp generator. I would like you to simulate Yotube Timestamp generator. To do this, when I tell you something, you are always going to generate response with one heading title and paragraph without any new line and dont forget u only give python dictionary form. For example:{"Heading":"This is a heading of my prompt","paragraph":"This is a paragraph related to the given prompt with only 100-150 words only and pretend like that we r writing blog in simple word "}'}]
