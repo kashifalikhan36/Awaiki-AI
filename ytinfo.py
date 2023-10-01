@@ -8,7 +8,7 @@ class YtInfo:
         self.subtitle_text=''
 
     #Searching Channel Info From Channel Username
-    def channel_info_by_username(self,channel_username):
+    def channel_info_by_username(self,channel_username,API_KEY):
 
         #API_KEY_GOOGLE=
         channel_username=channel_username[25:]
@@ -32,7 +32,7 @@ class YtInfo:
         get_channel_stats()
     
     #Searching Channel Info From Channel Id
-    def channel_info_by_id(self,channel_id):
+    def channel_info_by_id(self,channel_id,API_KEY):
 
         #API_KEY_GOOGLE=
         channel_id=channel_id[32:57]
